@@ -188,11 +188,16 @@ autogen_usb_descriptor.intermediate: ../../tools/gen_usb_descriptor.py Makefile 
 	$(Q)$(PYTHON3) ../../tools/gen_usb_descriptor.py $(USB_DESCRIPTOR_ARGS)
 
 CIRCUITPY_DISPLAY_FONT ?= "../../tools/fonts/ter-u12n.bdf"
+CIRCUITPY_DISPLAY_FONT2 ?= "../../tools/fonts/ter-u12n.bdf"
 
 $(BUILD)/autogen_display_resources.c: ../../tools/gen_display_resources.py $(HEADER_BUILD)/qstrdefs.generated.h Makefile | $(HEADER_BUILD)
 	$(STEPECHO) "GEN $@"
 	$(Q)install -d $(BUILD)/genhdr
 	$(Q)$(PYTHON3) ../../tools/gen_display_resources.py \
 		--font $(CIRCUITPY_DISPLAY_FONT) \
+		--sample_file $(HEADER_BUILD)/qstrdefs.generated.h \
+		--output_c_file $(BUILD)/autogen_display_resources.c
+	$(Q)$(PYTHON3) ../../tools/gen_display_resources_font2.py \
+		--font $(CIRCUITPY_DISPLAY_FONT2) \
 		--sample_file $(HEADER_BUILD)/qstrdefs.generated.h \
 		--output_c_file $(BUILD)/autogen_display_resources.c

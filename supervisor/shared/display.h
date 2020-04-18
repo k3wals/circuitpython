@@ -36,11 +36,17 @@
 
 // This is fixed so it doesn't need to be in RAM.
 extern const fontio_builtinfont_t supervisor_terminal_font;
+extern const fontio_builtinfont_t supervisor_terminal_font2;
 
 // These will change so they must live in RAM.
 extern displayio_bitmap_t supervisor_terminal_font_bitmap;
 extern displayio_tilegrid_t supervisor_terminal_text_grid;
 extern terminalio_terminal_obj_t supervisor_terminal;
+
+// For Font 2
+extern displayio_bitmap_t supervisor_terminal_font2_bitmap;
+extern displayio_tilegrid_t supervisor_terminal_font2_text_grid;
+
 
 void supervisor_start_terminal(uint16_t width_px, uint16_t height_px);
 void supervisor_stop_terminal(void);
